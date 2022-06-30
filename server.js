@@ -4,7 +4,7 @@
 // create .env
 // create database
 // create seeds
-// create models
+// create models: user, blog, comment
 // create views
 // create public css and js
 // create handlebars
