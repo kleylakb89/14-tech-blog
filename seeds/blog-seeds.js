@@ -1,5 +1,3 @@
-const {Blog} = require('../models');
-
 const blogData =[
     {
         title: 'Fill your database with sequelize',
@@ -13,6 +11,5 @@ const blogData =[
     },
 ];
 
-const seedBlogs = () => Blog.bulkCreate(blogData);
 
-module.exports = seedBlogs;
+module.exports = blogData;

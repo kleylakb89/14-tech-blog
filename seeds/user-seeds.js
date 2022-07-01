@@ -1,5 +1,3 @@
-const {User} = require('../models');
-
 const userData = [
     {
         username: 'FunGuy',
@@ -18,6 +16,4 @@ const userData = [
     },
 ];
 
-const seedUsers = () => User.bulkCreate(userData);
-
-module.exports = seedUsers;
+module.exports = userData;

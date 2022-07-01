@@ -20,6 +20,9 @@ Comment.init(
         },
         post_date: {
             type: DataTypes.DATEONLY,
+            // get() {
+            //     return moment(this.getDataValue('post_date').format('DD.MM.YYY'));
+            // },
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -38,6 +41,7 @@ Comment.init(
     },
     {
         sequelize,
+        updatedAt: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'comment'
