@@ -25,12 +25,6 @@ Blog.init(
                 len: [1,5000],
             },
         },
-        post_date: {
-            type: DataTypes.DATEONLY,
-            // get() {
-            //     return moment(this.getDataValue('post_date').format('DD.MM.YYY'));
-            // },
-        },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
