@@ -27,5 +27,18 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/blog/:id', withAuth, async (req, res) => {
+    try {
+        const blogData = await Blog.findByPk(req.params.id);
+
+        const blog = blogData.get({plain: true});
+
+        res.render('blog', {blog, loggedIn: req.session.loggedIn});
+        
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 
 module.exports = router;
