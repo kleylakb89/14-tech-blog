@@ -60,12 +60,14 @@ router.get('/blog/:id', withAuth, async (req, res) => {
 });
 
 router.post('/blog/:id', withAuth, async (req, res) => {
+    console.log(req.params.id, req.session.userId);
     try {
         const commentData = await Comment.create({
             text: req.body.text,
-            user_id: req.session.user.id,
-            blog_id: location.window.id,
+            user_id: req.session.userId,
+            blog_id: req.params.id,
         });
+
         res.status(200).json(commentData);
     } catch (err) {
         console.log(err);
