@@ -59,6 +59,20 @@ router.get('/blog/:id', withAuth, async (req, res) => {
     }
 });
 
+router.post('/blog/:id', withAuth, async (req, res) => {
+    try {
+        const commentData = await Comment.create({
+            text: req.body.text,
+            user_id: req.session.user.id,
+            blog_id: location.window.id,
+        });
+        res.status(200).json(commentData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 
 
 router.get('/login', (req, res) => {
