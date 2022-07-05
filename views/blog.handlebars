@@ -1,22 +1,23 @@
-<section>
-    <header>
-        <h3>{{blog.title}} Posted by {{blog.user.username}} on {{blog.created_at}}</h3>
+<section class="row">
+    <header class="col-12 col-md-8 border border-3 border-dark rounded m-4 d-flex flex-wrap">
+        <h3 class="col-12 col-md-6 p-2 bg-dark text-light">{{blog.title}}</h3>
+        <h3 class="col-12 col-md-6 p-2 text-end bg-dark text-light">Posted by {{blog.user.username}} on {{format_time blog.created_at}}</h3>
+        <p class="col-12">{{blog.text}}</p>
     </header>
-    <p>{{blog.text}}</p>
 
-    <div>
+    <div class="row">
         {{#each blog.comments as |comment|}}
         {{> comment-details}}
         {{/each}}
     </div>
 
-    <div>
-        <form class="form comment-form">
-            <div class="form-group">
-                <label for="comment-text">Comment:</label>
+    <div class="row">
+        <form class="form comment-form col-12 col-md-8 border border-3 border-dark rounded m-4 d-flex flex-wrap">
+            <div class="form-group col-12 p-2 text-center bg-dark">
+                <label for="comment-text" class="text-light">Comment:</label>
                 <input class="form-input" type="text" id="comment-text" />
             </div>
-            <div class="form-group">
+            <div class="form-group col-12 text-center p-2">
                 <button class="btn btn-primary" type="submit" id="submit-comment">Submit</button>
             </div>
         </form>

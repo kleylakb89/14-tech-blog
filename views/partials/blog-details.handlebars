@@ -1,7 +1,8 @@
-<section>
-    <header>
-        <a href="/blog/{{id}}">{{title}} Posted by {{user.username}} on {{format_time created_at}}</a>
+<section class="col-12 col-md-8 border border-3 border-dark rounded m-4">
+    <header class="col-12 bg-dark text-light d-flex">
+        <a href="/blog/{{id}}" class="col-12 col-md-6 p-3">{{title}}</a>
+        <p class="col-12 col-md-6 p-3 text-end">Posted by {{user.username}} on {{format_time created_at}}</p>
     </header>
-    <p>{{text}}</p>
+    <p class="col-12 col-md-8 p-2">{{text}}</p>
 
 </section>
