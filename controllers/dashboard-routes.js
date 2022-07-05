@@ -79,5 +79,30 @@ router.get('/:id', withAuth, async (req, res) => {
   }
 });
 
+router.put('/:id', withAuth, async (req, res) => {
+  try {
+    const blogData = await Blog.update({
+      title: req.body.title,
+      text: req.body.text,
+      where: req.params.id,
+      attributes: ['title', 'text', 'created_at'],
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const blog = blogData.get({ plain: true });
+
+    res.render('update-blog', { blog, loggedIn: req.session.loggedIn });
+
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;
