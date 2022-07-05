@@ -60,7 +60,6 @@ router.get('/blog/:id', withAuth, async (req, res) => {
 });
 
 router.post('/blog/:id', withAuth, async (req, res) => {
-    console.log(req.params.id, req.session.userId);
     try {
         const commentData = await Comment.create({
             text: req.body.text,

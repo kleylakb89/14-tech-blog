@@ -81,10 +81,12 @@ router.get('/:id', withAuth, async (req, res) => {
 
 router.put('/:id', withAuth, async (req, res) => {
   try {
-    const blogData = await Blog.update({
+    const blogData = await Blog.update(req.body, {
       title: req.body.title,
       text: req.body.text,
-      where: req.params.id,
+      where: {
+        id: req.params.id,
+      },
       attributes: ['title', 'text', 'created_at'],
       include: [
         {
@@ -94,9 +96,7 @@ router.put('/:id', withAuth, async (req, res) => {
       ],
     });
 
-    const blog = blogData.get({ plain: true });
-
-    res.render('update-blog', { blog, loggedIn: req.session.loggedIn });
+    res.status(200).json(blogData);
 
   } catch (err) {
     console.log(err);

@@ -3,10 +3,11 @@ const blog = document.querySelector('#submit-blog');
 const blogHandler = async (event) => {
   event.preventDefault();
 
-  const title = document.querySelector('#blog-title').value;
-  const text = document.querySelector('#blog-text').value;
+  const id = window.location.pathname;
+  const title = document.querySelector('#update-title').value;
+  const text = document.querySelector('#update-text').value;
   
-  const response = await fetch('/dashboard/:id', {
+  const response = await fetch(`${id}`, {
     method: 'PUT',
     credentials: 'include',
     body: JSON.stringify({
