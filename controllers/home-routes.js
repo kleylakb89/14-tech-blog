@@ -75,6 +75,61 @@ router.post('/blog/:id', withAuth, async (req, res) => {
     }
 });
 
+router.get('/dashboard', withAuth, async (req, res) => {
+    try {
+        const blogData = await Blog.findAll({
+            attributes: ['id', 'title', 'text', 'created_at'],
+            where: {
+                user_id: req.session.userId,
+            },
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+            ],
+        });
+
+        const blogs = blogData.map((blog) => blog.get({plain: true}));
+
+        res.render('dashboard', {
+            blogs,
+            loggedIn: req.session.loggedIn,
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+router.get('/dashboard/new', withAuth, async (req, res) => {
+    try {
+        res.render('new-post', {
+            loggedIn: req.session.loggedIn,
+        });
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+router.post('/dashboard/new', withAuth, async (req, res) => {
+    try {
+        const blogData = await Blog.create({
+            title: req.body.title,
+            text: req.body.text,
+            user_id: req.session.userId,
+        });
+
+        res.status(200).json(blogData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 
 
 router.get('/login', (req, res) => {
