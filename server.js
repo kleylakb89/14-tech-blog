@@ -1,14 +1,3 @@
-// require dependencies
-// create routes
-// create connection
-// create .env
-// create database
-// create seeds
-// create models: user, blog, comment
-// create views
-// create public css and js
-// create handlebars
-
 const path = require('path');
 const express = require('express');
 const exphbs = require('express-handlebars');
